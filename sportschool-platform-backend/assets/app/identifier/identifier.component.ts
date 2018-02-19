@@ -20,9 +20,9 @@ export class IdentifierComponent {
 
         var myConfirm = confirm('Wilt u "' + this.identifier.nfcId + '" echt verwijderen?');
         if (myConfirm === false) return;
-        this.identifierService.deleteIdentifier(this.identifier.nfcId)
-            // .subscribe(
-            //     result => console.log(result)
-            // );
+        this.identifierService.deleteIdentifier(this.identifier)
+            .subscribe(
+                result => console.log(result)
+            );
     }
 }

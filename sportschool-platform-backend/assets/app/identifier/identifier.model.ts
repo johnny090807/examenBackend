@@ -1,5 +1,5 @@
 export class Identifier {
     constructor(public nfcId: string,
-                public user: string,
+                public userId: string,
                 public identifierId?:string) {}
 }

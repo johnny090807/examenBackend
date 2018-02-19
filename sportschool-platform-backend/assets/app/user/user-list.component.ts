@@ -26,7 +26,7 @@ import {AuthService} from "../auth/auth.service";
 })
 export class UserListComponent implements OnInit{
     users: User[];
-    public term:any = {firstName : '', lastName: ''};
+    public term:any = {firstName : '', lastName: '', userId: ''};
     constructor(private userService: UserService,
                 private authService: AuthService){}
 

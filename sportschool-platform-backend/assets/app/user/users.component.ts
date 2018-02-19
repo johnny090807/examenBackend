@@ -6,7 +6,7 @@ import {Component} from "@angular/core";
         <div class="row" id="left">
             <app-user-input></app-user-input>
         </div>
-        <div class="row pull-right" id="right">
+        <div class="row" id="right">
             <app-user-list></app-user-list>
         </div>
     `,

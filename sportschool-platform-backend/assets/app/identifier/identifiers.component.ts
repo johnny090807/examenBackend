@@ -4,8 +4,8 @@ import {Component} from "@angular/core";
     selector: 'app-identifiers',
     template: `
         <div class="row">
-            <app-user-identifier></app-user-identifier>
-        </div>
+        <app-user-identifier></app-user-identifier>
+        </div>        
         <hr>
         <div class="row">
             <app-user-identifier-list></app-user-identifier-list>

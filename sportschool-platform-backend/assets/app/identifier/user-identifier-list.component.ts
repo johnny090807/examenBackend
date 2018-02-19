@@ -9,14 +9,17 @@ import {User} from "../user/user.model";
     selector: 'app-user-identifier-list',
     template: `
         <div class="col-md-8 col-md-offset-2">
+            <h4>Zoek hier een naar een kaart:</h4>
+            <input type="text" class="form-control" [(ngModel)]="term.nfcId" placeholder="NFCID">
             <app-identifier
                     [identifier]="identifier"
-                    *ngFor="let identifier of identifiers">
+                    *ngFor="let identifier of identifiers| filterBy:term;">
             </app-identifier>
         </div>
     `
 })
 export class UserIdentifierListComponent implements OnInit{
+    public term:any = {nfcId: ''};
     identifiers: Identifier[];
     public userId: string;
     // public term:any;

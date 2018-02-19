@@ -30,6 +30,9 @@ export class UserComponent{
 
 
     onEdit(){
+        $(function() {
+            $('article').scrollTop(0);
+        });
         this.userService.editUser(this.user);
     }
     onDelete(){

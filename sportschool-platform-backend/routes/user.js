@@ -128,22 +128,6 @@ router.delete('/:id', function (req,res,next) {
                 error: {user: 'User not found!'}
             });
         }
-
-        // Identifier.findByIdAndRemove(req.params.id, function(err, identifier){
-        //     if(err){
-        //         return res.status(500).json({
-        //             title: 'An error occurred',
-        //             error: err
-        //         });
-        //     }
-        //     if(!identifier) {
-        //         return res.status(500).json({
-        //             title: 'No identifier found!',
-        //             error: {identifier: 'Identifier not found!'}
-        //         });
-        //     }
-        // });
-
         user.remove(function(err, result){
             if (err){
                 return res.status(500).json({
@@ -158,6 +142,24 @@ router.delete('/:id', function (req,res,next) {
         });
     });
 });
+
+
+//
+// Identifier.findByIdAndRemove(req.params.id, function(err, identifier){
+//     if(err){
+//         return res.status(500).json({
+//             title: 'An error occurred',
+//             error: err
+//         });
+//     }
+//     if(!identifier) {
+//         return res.status(500).json({
+//             title: 'No identifier found!',
+//             error: {identifier: 'Identifier not found!'}
+//         });
+//     }
+// });
+
 
 
 module.exports = router;

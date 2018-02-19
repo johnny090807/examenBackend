@@ -52,14 +52,54 @@ router.use('/', function (req, res, next) {
     })
 });
 
+router.patch('/:id', function(req, res, next){
+    var decoded = jwt.decode(req.query.token);
+    Identifier.findById(req.params.id, function(err, identifier){
+        if(err){
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        if(!identifier){
+            return res.status(500).json({
+                title: 'No identifier found!',
+                error: {message: 'Identifier not found'}
+            });
+        }
+
+        identifier.nfcId = req.body.nfcId;
+        identifier.save(function(err, result){
+            if (err){
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(201).json({
+                title:'Updated identifier',
+                obj: result
+            });
+        });
+    });
+});
 
 
 
 router.post('/:id', function (req, res, next) {
     User.findById(req.body.userId, function (err, user) {
+        console.log(req.params.id);
+        console.log(req.body.userId);
+        console.log(user);
         if (err) {
             return res.status(500).json({
                 title: 'An error occurred',
+                error: err
+            });
+        }
+        if (!user) {
+            return res.status(500).json({
+                title: 'No user found',
                 error: err
             });
         }
@@ -94,7 +134,8 @@ router.post('/:id', function (req, res, next) {
 
 router.delete('/:id', function (req,res,next) {
     var decoded = jwt.decode(req.query.token);
-    Identifier.removeAndFindById(req.params.id, function (err,identifier) {
+    Identifier.findById(req.params.id, function (err,identifier) {
+        console.log(identifier);
         if(err){
             return res.status(500).json({
                 title: 'An error occurred',
@@ -103,13 +144,25 @@ router.delete('/:id', function (req,res,next) {
         }
         if(!identifier) {
             return res.status(500).json({
-                title: 'No identifier found!',
-                error: {identifier: 'Identifier not found!'}
+                title: 'No user found!',
+                error: {user: 'User not found!'}
             });
         }
-
+        identifier.remove(function(err, result){
+            if (err){
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(201).json({
+                title:'Deleted user',
+                obj: result
+            });
+        });
     });
 });
+
 
 
 module.exports = router;

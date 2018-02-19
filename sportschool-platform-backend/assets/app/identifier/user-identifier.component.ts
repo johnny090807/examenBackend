@@ -11,7 +11,7 @@ import {IdentifierService} from "./identifier.service";
 })
 export class UserIdentifierComponent implements OnInit{
     public userId: string;
-    @Input() identifier:Identifier;
+    @Input() identifier:Identifier[];
     private sub: any;
 
     constructor(private router:Router,
@@ -40,9 +40,9 @@ export class UserIdentifierComponent implements OnInit{
         this.router.navigateByUrl('/');
     }
     ngOnInit(){
-        // this.identifierService.identifierIsEdit.subscribe(
-        //     (identifier: Identifier) => this.identifier = identifier
-        // );
+        this.identifierService.identifierIsEdit.subscribe(
+            (identifier: Identifier) => this.identifier = identifier
+        );
         this.sub = this.route.params
             .subscribe(
                 (params: Params) => {
