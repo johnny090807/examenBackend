@@ -1,0 +1,18 @@
+<article class="panel panel-default">
+    <div class="panel-body">
+        {{ user.firstName  }} {{ user.lastName  }}
+        <div class="pull-right">
+            Saldo: &euro;{{user.credit | Percentage: 0.01}}.-
+        </div>
+    </div>
+    <footer class="panel-footer">
+        <div class="author">
+            {{ user.email }}
+        </div>
+        <div class="config">
+            <a (click)="onEdit()" style="white-space: nowrap;">Pas aan</a>
+            <a (click)="onAddIdentifier(user)">Kaarten</a>
+            <a (click)="onDelete()">Verwijder</a>
+        </div>
+    </footer>
+</article>
