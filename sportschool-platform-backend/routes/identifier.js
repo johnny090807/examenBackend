@@ -9,36 +9,6 @@ var User = require('../models/user');
 
 var identifiersIds = [];
 
-router.get('/:id', function(req, res, next){
-
-
-    // console.log(req.params.id);
-    // User.find()
-    //     .exec(function(err, user){
-    //         console.log(user);
-    //         if (err) {
-    //             return res.status(500).json({
-    //                 title: 'An error occurred',
-    //                 error: err
-    //             });
-    //         }
-    //         Identifier.findById(user.identifiers, function (err, identifier) {
-    //
-    //             console.log(identifier);
-    //             if (err) {
-    //                 return res.status(500).json({
-    //                     title: 'An error occurred',
-    //                     error: err
-    //                 });
-    //             }
-    //             res.status(201).json({
-    //                 title: 'Success',
-    //                 obj: identifier
-    //             });
-    //     });
-    //
-    // });
-});
 
 router.use('/', function (req, res, next) {
     jwt.verify(req.query.token, 'secret', function (err, decoded) {

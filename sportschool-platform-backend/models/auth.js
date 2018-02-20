@@ -7,6 +7,15 @@ var schema = new Schema({
     password: {type: String, required: true},
 });
 
+// Auth.find({userName: 'admin'},function(err, auth){
+//     if(!auth){
+//         var auth = new Auth({
+//             userName: 'admin',
+//             password: 'geheim'
+//         })
+//     }
+// });
+
 
 schema.plugin(mongooseUniqueValidator);
 

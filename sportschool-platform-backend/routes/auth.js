@@ -5,6 +5,7 @@ var jwt = require('jsonwebtoken');
 
 var Auth = require('../models/auth');
 
+
 router.post('/signin', function (req, res, next){
     Auth.findOne({userName: req.body.userName}, function(err, user){
         if (err){

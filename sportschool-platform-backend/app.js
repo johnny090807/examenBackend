@@ -10,9 +10,26 @@ var appRoutes = require('./routes/app');
 var authRoutes = require('./routes/auth');
 var identifierRoutes = require('./routes/identifier');
 var userRoutes = require('./routes/user');
+var Auth = require('./models/auth');
+var bcrypt = require('bcryptjs');
 
 var app = express();
 mongoose.connect('mongodb://localhost:27017/sportschooldb')
+    .then(() => {
+        Auth.findOne({userName: 'admin'}, function(err, user){
+            console.log(user)
+            if(!user){
+                var defaultUser = new Auth({
+                    userName:'admin',
+                    password: bcrypt.hashSync('geheim', 10)
+                });
+                defaultUser.save((mes, err) => {
+                    console.log(err)
+                console.log(mes)
+            });
+            }
+        });
+    })
     .catch((error) => console.error(error))
 
 // view engine setup
