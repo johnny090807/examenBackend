@@ -9,7 +9,7 @@
                     type="text"
                     id="firstName"
                     class="form-control"
-                    [ngModel]="user?.firstName"
+                    [ngModel]="users?.firstName"
                     name="firstName"
                     required>
         </div>
@@ -19,7 +19,7 @@
                     type="text"
                     id="lastName"
                     class="form-control"
-                    [ngModel]="user?.lastName"
+                    [ngModel]="users?.lastName"
                     name="lastName"
                     required>
         </div>
@@ -29,7 +29,7 @@
                     type="text"
                     id="email"
                     class="form-control"
-                    [ngModel]="user?.email"
+                    [ngModel]="users?.email"
                     name="email"
                     required>
         </div>
@@ -39,7 +39,7 @@
                     type="number"
                     id="credit"
                     class="form-control"
-                    [ngModel]="user?.credit"
+                    [ngModel]="users?.credit * 0.01"
                     name="credit">
         </div>
         <button class="btn btn-danger" type="button" (click)="onClear(f)"><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjMycHgiIGhlaWdodD0iMzJweCIgdmlld0JveD0iMCAwIDMzOS4xNzcgMzM5LjE3NyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzM5LjE3NyAzMzkuMTc3OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTI0Ny4yNDQsMTY5LjU5bDgzLjkzOC04My45MzhjNS4zMzItNS4zMjcsNy45OTQtMTEuNzk4LDcuOTk0LTE5LjQxNGMwLTcuNjE0LTIuNjY5LTE0LjA4NC03Ljk5NC0xOS40MTRMMjkyLjM1NSw3Ljk5MyAgIEMyODcuMDI2LDIuNjY1LDI4MC41NTYsMCwyNzIuOTQ0LDBjLTcuNjE3LDAtMTQuMDg1LDIuNjY1LTE5LjQxNyw3Ljk5M0wxNjkuNTksOTEuOTMxTDg1LjY1MSw3Ljk5MyAgIEM4MC4zMjUsMi42NjUsNzMuODU0LDAsNjYuMjM3LDBjLTcuNjExLDAtMTQuMDgzLDIuNjY1LTE5LjQxNCw3Ljk5M0w3Ljk5NCw0Ni44MjRDMi42NjcsNTIuMTUsMCw1OC42MjQsMCw2Ni4yMzggICBjMCw3LjYxNiwyLjY2NCwxNC4wODQsNy45OTQsMTkuNDE0bDgzLjkzNyw4My45MzhMNy45OTQsMjUzLjUyOEMyLjY2NywyNTguODU5LDAsMjY1LjMyNywwLDI3Mi45NDUgICBjMCw3LjYxLDIuNjY0LDE0LjA4Miw3Ljk5NCwxOS40MWwzOC44MywzOC44MjhjNS4zMyw1LjMzMiwxMS44MDMsNy45OTQsMTkuNDE0LDcuOTk0YzcuNjE2LDAsMTQuMDg0LTIuNjY5LDE5LjQxNC03Ljk5NCAgIGw4My45MzktODMuOTM4bDgzLjk0NCw4My45MzhjNS4zMjgsNS4zMzIsMTEuNzkzLDcuOTk0LDE5LjQxNyw3Ljk5NGM3LjYxMSwwLDE0LjA4Mi0yLjY2OSwxOS40MTEtNy45OTRsMzguODItMzguODI4ICAgYzUuMzMyLTUuMzI0LDcuOTk0LTExLjgsNy45OTQtMTkuNDFjMC03LjYxOC0yLjY2Mi0xNC4wODYtNy45OTQtMTkuNDE3TDI0Ny4yNDQsMTY5LjU5eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" /></button>
