@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
-var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
+// var mongoose = require('mongoose');
+// var bcrypt = require('bcryptjs');
 
 var Identifier = require('../models/identifier');
 var User = require('../models/user');
@@ -88,9 +88,6 @@ router.patch('/:id', function(req, res, next){
 
 router.post('/:id', function (req, res, next) {
     User.findById(req.body.userId, function (err, user) {
-        console.log(req.params.id);
-        console.log(req.body.userId);
-        console.log(user);
         if (err) {
             return res.status(500).json({
                 title: 'An error occurred',
@@ -144,8 +141,8 @@ router.delete('/:id', function (req,res,next) {
         }
         if(!identifier) {
             return res.status(500).json({
-                title: 'No user found!',
-                error: {user: 'User not found!'}
+                title: 'No identifier found!',
+                error: {identifier: 'Identifier not found!'}
             });
         }
         identifier.remove(function(err, result){
@@ -156,13 +153,11 @@ router.delete('/:id', function (req,res,next) {
                 });
             }
             res.status(201).json({
-                title:'Deleted user',
+                title:'Deleted identifier',
                 obj: result
             });
         });
     });
 });
-
-
 
 module.exports = router;

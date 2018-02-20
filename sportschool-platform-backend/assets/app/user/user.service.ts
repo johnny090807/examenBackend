@@ -7,6 +7,7 @@ import {Observable} from "rxjs/Observable";
 import {AuthService} from "../auth/auth.service";
 import {Identifier} from "../identifier/identifier.model";
 import {IdentifierService} from "../identifier/identifier.service";
+import {Res} from "awesome-typescript-loader/dist/checker/protocol";
 
 @Injectable()
 export class UserService {
@@ -82,16 +83,6 @@ export class UserService {
     }
 
     deleteUser(user:User) {
-        try{
-            this.identifierService.removeIdentifierById(user.userId)
-                .map(
-                    result => console.log(result)
-                )
-            }
-        catch(error)
-        {
-            console.error(error);
-        }
         if(this.authService.isLoggedIn()){
             this.users.splice(this.users.indexOf(user), 1);
         }

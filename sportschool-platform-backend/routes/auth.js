@@ -19,18 +19,29 @@ router.post('/signin', function (req, res, next){
                 error: {message: "Email or Password don't match"}
             });
         }
-        if(!bcrypt.compareSync(req.body.password, user.password)){
-            return res.status(401).json({
-                title: 'Login failed',
-                error: {message: "Email or Password don't match"}
+        bcrypt.compare(req.body.password, user.password, (err, result)=>{
+            if (err){
+                return res.status(401).json({
+                    title: 'Login failed',
+                    error: err
+                });
+            }
+            else if (result === false){
+                return res.status(401).json({
+                    title: 'Login failed',
+                    error: {message: "Email or Password don't match"}
+                });
+            }
+            var token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
+            res.status(200).json({
+                title: 'Successfully logged in',
+                token: token,
+                userId: user._id
             });
-        }
-        var token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
-        res.status(200).json({
-            title: 'Successfully logged in',
-            token: token,
-            userId: user._id
-        });
+
+
+            })
+
     });
 });
 

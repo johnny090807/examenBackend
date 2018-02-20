@@ -1,4 +1,4 @@
-import {Injectable, EventEmitter, OnInit, OnDestroy} from "@angular/core";
+import {Injectable, EventEmitter, OnInit} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {Headers, Http, Response} from "@angular/http";
 import {ActivatedRoute} from "@angular/router";
@@ -9,9 +9,9 @@ import {ErrorService} from "../errors/error.service";
 import {AuthService} from "../auth/auth.service";
 
 @Injectable()
-export class IdentifierService implements OnInit, OnDestroy{
+export class IdentifierService implements OnInit{
 
-    private identifiers: Identifier=[];
+    private identifiers: Identifier[] = [];
     identifierIsEdit = new EventEmitter<Identifier>();
     private sub: any;
     public userId: string;
@@ -91,16 +91,6 @@ export class IdentifierService implements OnInit, OnDestroy{
         return this.http.delete('http://localhost:3000/api/identifier/' + identifier.identifierId + token)
             .map((response: Response) => response.json())
             .catch((error:Response) => {
-                this.errorService.handleError(error.json());
-                return Observable.throw(error.json());
-
-            });
-    }
-    removeIdentifierById(identifier: any) {
-        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.delete('http://localhost:3000/api/identifier/' + identifier.identifierId + token)
-            .map((response: Response) => response.json())
-            .catch((error: Response) => {
                 this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
 

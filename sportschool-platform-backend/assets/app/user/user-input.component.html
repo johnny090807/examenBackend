@@ -1,6 +1,6 @@
 <div class="col-md-8 col-md-offset-2">
     <p *ngIf="!this.authService.isLoggedIn()"><a (click)="logIn()">Inloggen om gegevens te bekijken</a></p>
-    <h4>Voeg iemand toe of klik op pas aan om iemand aan te passen:</h4>
+    <h4 *ngIf="this.authService.isLoggedIn()">Voeg iemand toe of klik op pas aan om iemand aan te passen:</h4>
     <hr>
     <form (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="this.authService.isLoggedIn()">
         <div class="form-group">

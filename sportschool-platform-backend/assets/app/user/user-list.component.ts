@@ -6,7 +6,7 @@ import {AuthService} from "../auth/auth.service";
 @Component({
     selector: 'app-user-list',
     template: `
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2" *ngIf="this.authService.isLoggedIn()">
             <h4>Zoek hier een gebruiker</h4>
             <hr>
             <div class="form-group">
