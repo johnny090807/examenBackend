@@ -10,7 +10,7 @@ const APP_ROUTES: Routes = [
     { path: '', redirectTo: '/auth', pathMatch: 'full' },
     { path: 'users', component: UsersComponent },
     { path: 'auth', component: AuthenticationComponent, children: AUTH_ROUTES },
-    { path: 'identifier/:userId', component: IdentifiersComponent }
+    { path: 'users/:userId', component: UsersComponent }
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);

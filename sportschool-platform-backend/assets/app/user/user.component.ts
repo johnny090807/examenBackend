@@ -42,6 +42,6 @@ export class UserComponent{
             );
     }
     onAddIdentifier(user: User){
-        this.router.navigateByUrl('/identifier/' + user.userId);
+        this.router.navigateByUrl('/users/' + user.userId);
     }
 }

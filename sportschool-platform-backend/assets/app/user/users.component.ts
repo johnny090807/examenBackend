@@ -5,6 +5,10 @@ import {Component} from "@angular/core";
     template: `
         <div class="row" id="left">
             <app-user-input></app-user-input>
+            <hr>
+            <div class="identifiers" style="">
+                <app-identifiers></app-identifiers>
+            </div>
         </div>
         <div class="row" id="right">
             <app-user-list></app-user-list>

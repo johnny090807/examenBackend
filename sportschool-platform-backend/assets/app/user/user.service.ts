@@ -20,20 +20,19 @@ export class UserService {
                 private identifierService: IdentifierService){}
 
     addUser(user: User) {
-        const userId = localStorage.userId;
+        const userId = localStorage.userId
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.post(localStorage.Url + '/api/user/'+userId+ token, body, {headers: headers})
+        return this.http.post(localStorage.Url + '/api/user'+ token, body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
                 const user = new User(
                     result.obj.firstName,
                     result.obj.lastName,
                     result.obj.email,
-                    result.obj.authId,
                     result.obj.credit,
-                    result.obj._id,);
+                    result.obj._id);
                 this.users.unshift(user);
                 return user;
             })
@@ -54,9 +53,8 @@ export class UserService {
                         user.firstName,
                         user.lastName,
                         user.email,
-                        user.authId,
                         user.credit,
-                        user._id,)
+                        user._id)
                     );
                 }
                 console.log(users);

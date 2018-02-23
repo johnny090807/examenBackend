@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from "./app.component";
@@ -51,13 +51,12 @@ import {SubscriptionplanInputComponent} from "./subscriptionplan/subscriptionpla
         IdentifierComponent,
         UserIdentifierListComponent,
         IdentifiersComponent,
-        SubscriptionplanService,
         SubscriptionplanComponent,
         SubscriptionplanInputComponent
     ],
     imports: [
     BrowserModule, 
-    FormsModule, 
+    FormsModule,
     routing, 
     ReactiveFormsModule,
     HttpModule,
