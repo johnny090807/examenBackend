@@ -31,7 +31,8 @@ export class IdentifierService implements OnInit{
             });
     }
     getAllIdentifiersById(userId: string){
-        return this.http.get('http://localhost:3000/api/user/' + userId + '/identifiers')
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        return this.http.get(localStorage.Url + '/api/user/' + userId + '/identifiers' + token)
             .map((response:Response) => {
                 // console.log(response.json())
                 const identifiers = response.json();
@@ -57,7 +58,7 @@ export class IdentifierService implements OnInit{
         const body = JSON.stringify(identifier);
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.post('http://localhost:3000/api/identifier/' + identifier.userId + token, body, {headers:headers})
+        return this.http.post(localStorage.Url + '/api/identifier/' + identifier.userId + token, body, {headers:headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -75,7 +76,7 @@ export class IdentifierService implements OnInit{
         const body = JSON.stringify(identifier);
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.patch('http://localhost:3000/api/identifier/' + identifier.identifierId + token, body, {headers: headers})
+        return this.http.patch(localStorage.Url + '/api/identifier/' + identifier.identifierId + token, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -88,7 +89,7 @@ export class IdentifierService implements OnInit{
             this.identifiers.splice(this.identifiers.indexOf(identifier), 1);
         }
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.delete('http://localhost:3000/api/identifier/' + identifier.identifierId + token)
+        return this.http.delete(localStorage.Url + '/api/identifier/' + identifier.identifierId + token)
             .map((response: Response) => response.json())
             .catch((error:Response) => {
                 this.errorService.handleError(error.json());

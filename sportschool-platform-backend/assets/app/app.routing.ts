@@ -7,7 +7,7 @@ import {IdentifiersComponent} from "./identifier/identifiers.component";
 
 
 const APP_ROUTES: Routes = [
-    { path: '', redirectTo: '/users', pathMatch: 'full' },
+    { path: '', redirectTo: '/auth', pathMatch: 'full' },
     { path: 'users', component: UsersComponent },
     { path: 'auth', component: AuthenticationComponent, children: AUTH_ROUTES },
     { path: 'identifier/:userId', component: IdentifiersComponent }

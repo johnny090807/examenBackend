@@ -1,4 +1,4 @@
-export class User {
+export class Auth {
     constructor(public userName: string,
                 public password: string) {}
 }

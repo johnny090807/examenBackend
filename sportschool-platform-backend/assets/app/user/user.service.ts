@@ -20,10 +20,11 @@ export class UserService {
                 private identifierService: IdentifierService){}
 
     addUser(user: User) {
+        const userId = localStorage.userId;
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.post('http://localhost:3000/api/user'+ token, body, {headers: headers})
+        return this.http.post(localStorage.Url + '/api/user/'+userId+ token, body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
                 const user = new User(
@@ -31,7 +32,8 @@ export class UserService {
                     result.obj.lastName,
                     result.obj.email,
                     result.obj.credit,
-                    result.obj._id);
+                    result.obj._id,
+                    result.obj.authId);
                 this.users.unshift(user);
                 return user;
             })
@@ -42,7 +44,8 @@ export class UserService {
             });
     }
     getUsers(){
-        return this.http.get('http://localhost:3000/api/user')
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        return this.http.get(localStorage.Url + '/api/user' + token)
             .map((response:Response) => {
                 const users = response.json().obj;
                 let transformedUsers: User[] = [];
@@ -52,7 +55,8 @@ export class UserService {
                         user.lastName,
                         user.email,
                         user.credit,
-                        user._id)
+                        user._id,
+                        user.authId)
                     );
                 }
                 console.log(users);
@@ -74,7 +78,7 @@ export class UserService {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.patch('http://localhost:3000/api/user/' + user.userId + token, body, {headers: headers})
+        return this.http.patch(localStorage.Url + '/api/user/' + user.userId + token, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -87,7 +91,7 @@ export class UserService {
             this.users.splice(this.users.indexOf(user), 1);
         }
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.delete('http://localhost:3000/api/user/' + user.userId + token)
+        return this.http.delete(localStorage.Url + '/api/user/' + user.userId + token)
             .map((response: Response) => response.json())
             .catch((error:Response) => {
                 this.errorService.handleError(error.json());

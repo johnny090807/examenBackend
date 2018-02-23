@@ -37,7 +37,7 @@ export class UserIdentifierComponent implements OnInit{
 
     }
     onCancel (){
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/users');
     }
     ngOnInit(){
         this.identifierService.identifierIsEdit.subscribe(

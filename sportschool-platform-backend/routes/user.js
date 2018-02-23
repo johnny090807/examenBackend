@@ -4,7 +4,20 @@ var jwt = require('jsonwebtoken');
 
 var User = require('../models/user');
 var Identifier = require('../models/identifier');
+var Auth = require('../models/auth');
 
+
+router.use('/', function(req, res, next){
+    jwt.verify(req.query.token, 'secret', function(err, docoded){
+        if(err){
+            return res.status(401).json({
+                title:'Not Authenticated',
+                error: err
+            })
+        }
+        next();
+    });
+});
 
 router.get('/', function(req, res, next){
     User.find()
@@ -41,26 +54,14 @@ router.get('/:userId/identifiers', function(req, res, next){
 
 });
 
-router.use('/', function(req, res, next){
-    jwt.verify(req.query.token, 'secret', function(err, docoded){
-        if(err){
-            return res.status(401).json({
-                title:'Not Authenticated',
-                error: err
-            })
-        }
-        next();
+
+router.post('/:id', function(req, res, next) {
+    var user = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        auth: req.params.id
     });
-});
-
-
-router.post('/', function(req, res, next) {
-        var user = new User({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email
-        });
-
         user.save(function (err, result) {
             if (err) {
                 return res.status(500).json({

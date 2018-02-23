@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {UserService} from "./user/user.service";
 
@@ -7,5 +7,8 @@ import {UserService} from "./user/user.service";
     templateUrl: './app.component.html',
     providers: [UserService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+    ngOnInit(){
+        localStorage.setItem('Url', 'http://localhost:3000');
+    }
 }

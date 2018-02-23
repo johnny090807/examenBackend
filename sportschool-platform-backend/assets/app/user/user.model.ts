@@ -1,4 +1,5 @@
 import {Identifier} from "../identifier/identifier.model";
+import {Auth} from "../auth/auth.model";
 
 export class User{
 
@@ -7,5 +8,6 @@ export class User{
                 public email: string,
                 public credit?: number,
                 public userId?: string,
-                public identifiers?: Identifier[]){}
+                public identifiers?: Identifier[],
+                public authId: Auth._id){}
 }

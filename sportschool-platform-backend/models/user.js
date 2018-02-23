@@ -10,7 +10,8 @@ var schema = new Schema({
     email: {type: String, unique: true, required: true},
     credit: {type:Number, default: 0},
     identifiers: [{type: Schema.Types.ObjectId, ref: 'Identifier'}],
-    subscriptionPlan: {type: Schema.Types.ObjectId, ref: 'subscriptionPlan'}
+    subscriptionPlan: {type: Schema.Types.ObjectId, ref: 'subscriptionPlan'},
+    auth: {type:Schema.Types.ObjectId, ref:'Auth'}
 });
 
 schema.plugin(mongooseUniqueValidator);

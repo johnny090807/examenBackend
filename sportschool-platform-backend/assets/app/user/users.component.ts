@@ -10,9 +10,15 @@ import {Component} from "@angular/core";
             <app-user-list></app-user-list>
         </div>
     `,
-    styles:[`        
+    styles: [`        
 	   #left {left: 0; top: 0; width: 50%; }
-	   #right { position: absolute; margin-right: 20px;right: 0; top: 130px; width: 50%; }
+	   #right { position: absolute; margin-right: 20px;right: 0; top: 130px; width: 50%;}
+        @media screen and (min-width: 992px){
+            #right{
+                margin-right: 10%;
+            }
+        }
+    
     `]
 })
 
