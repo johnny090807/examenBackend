@@ -27,6 +27,9 @@ import {IdentifierService} from "./identifier/identifier.service";
 import {IdentifiersComponent} from "./identifier/identifiers.component";
 
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+import {SubscriptionplanService} from "./subscriptionplan/subscriptionplan.service";
+import {SubscriptionplanComponent} from "./subscriptionplan/subscriptionplan.component";
+import {SubscriptionplanInputComponent} from "./subscriptionplan/subscriptionplan-input.component";
 
 
 @NgModule({
@@ -47,7 +50,10 @@ import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
         PercentagePipe,
         IdentifierComponent,
         UserIdentifierListComponent,
-        IdentifiersComponent
+        IdentifiersComponent,
+        SubscriptionplanService,
+        SubscriptionplanComponent,
+        SubscriptionplanInputComponent
     ],
     imports: [
     BrowserModule, 
@@ -64,7 +70,8 @@ import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
         ErrorService,
         UserService,
         FilterPipe,
-        PercentagePipe
+        PercentagePipe,
+        SubscriptionplanService
     ]
 })
 export class AppModule {

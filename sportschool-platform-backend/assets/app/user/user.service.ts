@@ -31,9 +31,9 @@ export class UserService {
                     result.obj.firstName,
                     result.obj.lastName,
                     result.obj.email,
+                    result.obj.authId,
                     result.obj.credit,
-                    result.obj._id,
-                    result.obj.authId);
+                    result.obj._id,);
                 this.users.unshift(user);
                 return user;
             })
@@ -54,9 +54,9 @@ export class UserService {
                         user.firstName,
                         user.lastName,
                         user.email,
+                        user.authId,
                         user.credit,
-                        user._id,
-                        user.authId)
+                        user._id,)
                     );
                 }
                 console.log(users);
