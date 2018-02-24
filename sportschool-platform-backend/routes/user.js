@@ -55,7 +55,7 @@ router.get('/:userId/identifiers', function(req, res, next){
 });
 
 
-router.post('/:id', function(req, res, next) {
+router.post('/', function(req, res, next) {
     var user = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,

@@ -5,6 +5,7 @@ import {User} from "./user.model";
 import {UserService} from "./user.service";
 import {AuthService} from "../auth/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ErrorService} from "../errors/error.service";
 
 @Component({
     selector: 'app-user-input',
@@ -15,7 +16,8 @@ export class UserInputComponent implements  OnInit{
     @Input() term;
     constructor(private userService:UserService,
                 private authService: AuthService,
-                private route: Router){}
+                private route: Router,
+                private errorService: ErrorService){}
 
     onSubmit(form: NgForm){
         if(this.users){

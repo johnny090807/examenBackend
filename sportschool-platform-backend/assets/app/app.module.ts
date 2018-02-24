@@ -30,6 +30,7 @@ import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import {SubscriptionplanService} from "./subscriptionplan/subscriptionplan.service";
 import {SubscriptionplanComponent} from "./subscriptionplan/subscriptionplan.component";
 import {SubscriptionplanInputComponent} from "./subscriptionplan/subscriptionplan-input.component";
+import {IdentifierAllComponent} from "./identifier/Identifier-all.component";
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import {SubscriptionplanInputComponent} from "./subscriptionplan/subscriptionpla
         UserIdentifierListComponent,
         IdentifiersComponent,
         SubscriptionplanComponent,
-        SubscriptionplanInputComponent
+        SubscriptionplanInputComponent,
+        IdentifierAllComponent
     ],
     imports: [
     BrowserModule, 

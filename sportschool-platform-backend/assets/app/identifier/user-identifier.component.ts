@@ -4,6 +4,7 @@ import {Identifier} from "./identifier.model";
 import {NgForm} from "@angular/forms";
 import {User} from "../user/user.model";
 import {IdentifierService} from "./identifier.service";
+import {UserService} from "../user/user.service";
 
 @Component({
     selector:'app-user-identifier',
@@ -16,6 +17,7 @@ export class UserIdentifierComponent implements OnInit{
 
     constructor(private router:Router,
                 private route:ActivatedRoute,
+                private userService: UserService,
                 private identifierService: IdentifierService){}
     onSubmit(form:NgForm){
         if(this.identifier){
@@ -37,6 +39,7 @@ export class UserIdentifierComponent implements OnInit{
 
     }
     onCancel (){
+        this.userService.editIdentifier(false);
         this.router.navigateByUrl('/users');
     }
     ngOnInit(){

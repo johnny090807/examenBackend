@@ -22,6 +22,22 @@ router.use('/', function (req, res, next) {
     })
 });
 
+router.get('/', function(req, res, next){
+    Identifier.find()
+        .exec(function(err, identifier){
+            if (err){
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(201).json({
+                title: 'Success',
+                obj: identifier
+            });
+        });
+});
+
 router.patch('/:id', function(req, res, next){
     var decoded = jwt.decode(req.query.token);
     Identifier.findById(req.params.id, function(err, identifier){

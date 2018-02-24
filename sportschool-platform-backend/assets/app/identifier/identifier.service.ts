@@ -30,6 +30,30 @@ export class IdentifierService implements OnInit{
                 this.userId = params['userId'] || null;
             });
     }
+    getAllIdentifiers(){
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        return this.http.get(localStorage.Url + '/api/identifier/' + token)
+            .map((response:Response) => {
+                const identifiers = response.json().obj;
+                let transformedIdentifiers: Identifier[] = [];
+                for(let identifier of identifiers){
+                    transformedIdentifiers.unshift(new Identifier(
+                        identifier.nfcId,
+                        identifier.user,
+                        identifier._id)
+                    );
+                }
+                console.log(identifiers);
+                this.identifiers = transformedIdentifiers;
+                return transformedIdentifiers;
+            })
+            .catch((error:Response) => {
+                this.errorService.handleError(error.json());
+                return Observable.throw(error.json());
+
+            });
+    }
+
     getAllIdentifiersById(userId: string){
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         return this.http.get(localStorage.Url + '/api/user/' + userId + '/identifiers' + token)
@@ -44,7 +68,6 @@ export class IdentifierService implements OnInit{
                         identifier._id
                     ))
                 }
-                console.log(transformedIdentifiers);
                 this.identifiers = transformedIdentifiers;
                 return transformedIdentifiers;
             })
@@ -59,10 +82,7 @@ export class IdentifierService implements OnInit{
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         return this.http.post(localStorage.Url + '/api/identifier/' + identifier.userId + token, body, {headers:headers})
-            .map((response: Response) => {
-                response.json();
-                this.errorService.handleError(response.json());
-            })
+            .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
                 return Observable.throw(error.json())

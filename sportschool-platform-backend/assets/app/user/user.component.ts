@@ -3,6 +3,8 @@ import {Component, Input} from "@angular/core";
 import {User} from "./user.model";
 import {UserService} from "./user.service";
 import {Router} from "@angular/router";
+import {IdentifierService} from "../identifier/identifier.service";
+import {Identifier} from "../identifier/identifier.model";
 
 @Component({
     selector: 'app-user',
@@ -25,8 +27,11 @@ import {Router} from "@angular/router";
 
 export class UserComponent{
     @Input() user: User;
+    @Input() identifiers: Identifier;
+
     constructor(private userService: UserService,
-                private router: Router){}
+                private router: Router,
+                private identfierService:IdentifierService){}
 
 
     onEdit(){
@@ -42,6 +47,7 @@ export class UserComponent{
             );
     }
     onAddIdentifier(user: User){
-        this.router.navigateByUrl('/users/' + user.userId);
+        this.userService.editIdentifier(true);
+        this.router.navigate(['/users', user.userId]);
     }
 }

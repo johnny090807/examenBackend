@@ -5,10 +5,9 @@ import {Component} from "@angular/core";
     template: `
         <div class="row" id="left">
             <app-user-input></app-user-input>
+                <app-user-identifier></app-user-identifier>
             <hr>
-            <div class="identifiers" style="">
-                <app-identifiers></app-identifiers>
-            </div>
+                <app-user-identifier-list></app-user-identifier-list>
         </div>
         <div class="row" id="right">
             <app-user-list></app-user-list>
@@ -20,8 +19,15 @@ import {Component} from "@angular/core";
         @media screen and (min-width: 992px){
             #right{
                 margin-right: 10%;
+                width:50%;
             }
         }
+       @media screen and (max-width: 991px){
+           #right{
+               width: 40%;
+               margin-right: 100px;
+           }
+       }
     
     `]
 })

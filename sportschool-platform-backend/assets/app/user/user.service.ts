@@ -5,22 +5,18 @@ import {User} from "./user.model";
 import {ErrorService} from "../errors/error.service";
 import {Observable} from "rxjs/Observable";
 import {AuthService} from "../auth/auth.service";
-import {Identifier} from "../identifier/identifier.model";
-import {IdentifierService} from "../identifier/identifier.service";
-import {Res} from "awesome-typescript-loader/dist/checker/protocol";
 
 @Injectable()
 export class UserService {
     private users: User[] = [];
     userIsEdit = new EventEmitter<User>();
+    editBool = false;
 
     constructor(private authService:AuthService,
                 private errorService: ErrorService,
-                private http: Http,
-                private identifierService: IdentifierService){}
+                private http: Http){}
 
     addUser(user: User) {
-        const userId = localStorage.userId
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
@@ -67,7 +63,10 @@ export class UserService {
 
             });
     }
-
+    editIdentifier(bool: boolean){
+        this.editBool = bool;
+        return this.editBool;
+    }
     editUser(user:User){
         this.userIsEdit.emit(user);
     }
