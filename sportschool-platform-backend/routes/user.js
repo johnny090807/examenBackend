@@ -4,7 +4,6 @@ var jwt = require('jsonwebtoken');
 
 var User = require('../models/user');
 var Identifier = require('../models/identifier');
-var Auth = require('../models/auth');
 
 
 router.use('/', function(req, res, next){
@@ -24,7 +23,7 @@ router.get('/', function(req, res, next){
         .exec(function(err, user){
             if (err){
                 return res.status(500).json({
-                    title: 'An error occurred',
+                    title: 'Er is iets fout gegaan.',
                     error: err
                 });
             }
@@ -65,12 +64,12 @@ router.post('/', function(req, res, next) {
         user.save(function (err, result) {
             if (err) {
                 return res.status(500).json({
-                    title: 'An error occurred',
+                    title: 'Er is iets fout gegaan.',
                     error: err
                 });
             }
             res.status(201).json({
-                user: 'Saved user',
+                user: 'Gebruiker opgeslagen',
                 obj: result
             });
         });
@@ -87,8 +86,8 @@ router.patch('/:id', function(req, res, next){
         }
         if(!user){
             return res.status(500).json({
-                title: 'No message found!',
-                error: {message: 'Message not found'}
+                title: 'Gebruiker niet gevonden!',
+                error: {message: 'Gebruiker niet gevonden!'}
             });
         }
 
@@ -104,7 +103,7 @@ router.patch('/:id', function(req, res, next){
                 });
             }
             res.status(201).json({
-                title:'Updated user',
+                title:'Gebruiker geupdatet',
                 obj: result
             });
         });
@@ -141,7 +140,7 @@ router.delete('/:id', function (req,res,next) {
                         });
                     }
                     res.status(201).json({
-                        title:'Deleted user',
+                        title:'Gebruiker verwijderd',
                         obj: result
                     });
                 });
@@ -149,58 +148,5 @@ router.delete('/:id', function (req,res,next) {
             .catch((error) => console.error(error))
         });
     });
-        // Identifier.find({user: req.params.id}, function (err,identifier) {
-        //     console.log(identifier);
-        //     if(err){
-        //         return res.status(500).json({
-        //             title: 'An error occurred',
-        //             error: err
-        //         });
-        //     }
-        //     if(!identifier) {
-        //         return res.status(500).json({
-        //             title: 'No identifier found!',
-        //             error: {identifier: 'Identifier not found!'}
-        //         });
-        //     }
-        //     identifier.delete({user: req.params.id},function(err, result){
-        //         res.status(200).json({
-        //             title: 'Removed identifier(s)',
-        //             obj: result
-        //         })
-        //     });
-        // user.remove(function(err, result){
-        //     if (err){
-        //         return res.status(500).json({
-        //             title: 'An error occurred',
-        //             error: err
-        //         });
-        //     }
-        //     res.status(201).json({
-        //         title:'Deleted user',
-        //         obj: result
-        //     });
-        //     });
-        // });
-//     });
-//
-
-//
-// Identifier.findByIdAndRemove(req.params.id, function(err, identifier){
-//     if(err){
-//         return res.status(500).json({
-//             title: 'An error occurred',
-//             error: err
-//         });
-//     }
-//     if(!identifier) {
-//         return res.status(500).json({
-//             title: 'No identifier found!',
-//             error: {identifier: 'Identifier not found!'}
-//         });
-//     }
-// });
-
-
 
 module.exports = router;

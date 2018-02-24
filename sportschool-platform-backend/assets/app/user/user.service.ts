@@ -53,7 +53,6 @@ export class UserService {
                         user._id)
                     );
                 }
-                console.log(users);
                 this.users = transformedUsers;
                 return transformedUsers;
             })

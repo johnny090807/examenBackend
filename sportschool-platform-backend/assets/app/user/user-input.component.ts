@@ -27,15 +27,15 @@ export class UserInputComponent implements  OnInit{
             this.users.credit = form.value.credit * 100;
             this.userService.updateUser(this.users)
                 .subscribe(
-                    result => console.log(result)
+                    result => alert(result.title)
                 );
             this.users = null;
         }else{
             const user = new User(form.value.firstName, form.value.lastName, form.value.email, form.value.credit);
             this.userService.addUser(user)
                 .subscribe(
-                    data => console.log(data),
-                    error => console.error(error)
+                    data => alert("Gebruiker " + data.firstName + " " + data.lastName+ " toegevoegd."),
+                    error => console.log(error)
                 );
             form.resetForm();
         }

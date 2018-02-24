@@ -43,7 +43,6 @@ export class IdentifierService implements OnInit{
                         identifier._id)
                     );
                 }
-                console.log(identifiers);
                 this.identifiers = transformedIdentifiers;
                 return transformedIdentifiers;
             })
@@ -95,7 +94,6 @@ export class IdentifierService implements OnInit{
     }
 
     patchIdentifier(identifier: Identifier){
-        console.log(identifier.identifierId);
         const body = JSON.stringify(identifier);
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';

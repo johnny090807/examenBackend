@@ -9,29 +9,50 @@
                     type="text"
                     id="firstName"
                     class="form-control"
+                    #firstName = "ngModel"
                     [ngModel]="users?.firstName"
                     name="firstName"
                     required>
+            <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+                <div [hidden]="firstName.errors">
+                    Dit moet wel ingevuld zijn!
+                </div>
+            </div>
         </div>
+
+
         <div class="form-group">
             <label for="lastName">Achternaam: </label>
             <input
                     type="text"
                     id="lastName"
                     class="form-control"
+                    #lastName="ngModel"
                     [ngModel]="users?.lastName"
                     name="lastName"
                     required>
+            <div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+                <div [hidden]="lastName.errors">
+                    Dit moet wel ingevuld zijn!
+                </div>
+            </div>
         </div>
+
         <div class="form-group">
             <label for="email">Email: </label>
             <input
                     type="email"
                     id="email"
                     class="form-control"
+                    #email = "ngModel"
                     [ngModel]="users?.email"
                     name="email"
-                    required>
+                    email>
+            <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+                <div [hidden]="email.errors.required">
+                    Er is iets mis.
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <label for="credit">Opwaarderen: </label>
@@ -47,8 +68,9 @@
                 <option value="50">50 euro</option>
             </select>
         </div>
+
         <button class="btn btn-danger" type="button" (click)="onClear(f)"><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjMycHgiIGhlaWdodD0iMzJweCIgdmlld0JveD0iMCAwIDMzOS4xNzcgMzM5LjE3NyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzM5LjE3NyAzMzkuMTc3OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTI0Ny4yNDQsMTY5LjU5bDgzLjkzOC04My45MzhjNS4zMzItNS4zMjcsNy45OTQtMTEuNzk4LDcuOTk0LTE5LjQxNGMwLTcuNjE0LTIuNjY5LTE0LjA4NC03Ljk5NC0xOS40MTRMMjkyLjM1NSw3Ljk5MyAgIEMyODcuMDI2LDIuNjY1LDI4MC41NTYsMCwyNzIuOTQ0LDBjLTcuNjE3LDAtMTQuMDg1LDIuNjY1LTE5LjQxNyw3Ljk5M0wxNjkuNTksOTEuOTMxTDg1LjY1MSw3Ljk5MyAgIEM4MC4zMjUsMi42NjUsNzMuODU0LDAsNjYuMjM3LDBjLTcuNjExLDAtMTQuMDgzLDIuNjY1LTE5LjQxNCw3Ljk5M0w3Ljk5NCw0Ni44MjRDMi42NjcsNTIuMTUsMCw1OC42MjQsMCw2Ni4yMzggICBjMCw3LjYxNiwyLjY2NCwxNC4wODQsNy45OTQsMTkuNDE0bDgzLjkzNyw4My45MzhMNy45OTQsMjUzLjUyOEMyLjY2NywyNTguODU5LDAsMjY1LjMyNywwLDI3Mi45NDUgICBjMCw3LjYxLDIuNjY0LDE0LjA4Miw3Ljk5NCwxOS40MWwzOC44MywzOC44MjhjNS4zMyw1LjMzMiwxMS44MDMsNy45OTQsMTkuNDE0LDcuOTk0YzcuNjE2LDAsMTQuMDg0LTIuNjY5LDE5LjQxNC03Ljk5NCAgIGw4My45MzktODMuOTM4bDgzLjk0NCw4My45MzhjNS4zMjgsNS4zMzIsMTEuNzkzLDcuOTk0LDE5LjQxNyw3Ljk5NGM3LjYxMSwwLDE0LjA4Mi0yLjY2OSwxOS40MTEtNy45OTRsMzguODItMzguODI4ICAgYzUuMzMyLTUuMzI0LDcuOTk0LTExLjgsNy45OTQtMTkuNDFjMC03LjYxOC0yLjY2Mi0xNC4wODYtNy45OTQtMTkuNDE3TDI0Ny4yNDQsMTY5LjU5eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" /></button>
-        <button class="btn btn-primary" type="submit" ><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ5IDQ5IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0OSA0OTsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIzMnB4IiBoZWlnaHQ9IjMycHgiPgo8Zz4KCTxyZWN0IHg9IjI3LjUiIHk9IjUiIHdpZHRoPSI2IiBoZWlnaHQ9IjEwIiBmaWxsPSIjMDAwMDAwIi8+Cgk8cGF0aCBkPSJNMzkuOTE0LDBIMC41djQ5aDQ4VjguNTg2TDM5LjkxNCwweiBNMTAuNSwyaDI2djE2aC0yNlYyeiBNMzkuNSw0N2gtMzFWMjZoMzFWNDd6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8cGF0aCBkPSJNMTMuNSwzMmg3YzAuNTUzLDAsMS0wLjQ0NywxLTFzLTAuNDQ3LTEtMS0xaC03Yy0wLjU1MywwLTEsMC40NDctMSwxUzEyLjk0NywzMiwxMy41LDMyeiIgZmlsbD0iIzAwMDAwMCIvPgoJPHBhdGggZD0iTTEzLjUsMzZoMTBjMC41NTMsMCwxLTAuNDQ3LDEtMXMtMC40NDctMS0xLTFoLTEwYy0wLjU1MywwLTEsMC40NDctMSwxUzEyLjk0NywzNiwxMy41LDM2eiIgZmlsbD0iIzAwMDAwMCIvPgoJPHBhdGggZD0iTTI2LjUsMzZjMC4yNywwLDAuNTItMC4xMSwwLjcxLTAuMjljMC4xOC0wLjE5LDAuMjktMC40NSwwLjI5LTAuNzFzLTAuMTEtMC41MjEtMC4yOS0wLjcxYy0wLjM3LTAuMzctMS4wNC0wLjM3LTEuNDEsMCAgIGMtMC4xOSwwLjE4OS0wLjMsMC40MzktMC4zLDAuNzFjMCwwLjI3LDAuMTA5LDAuNTIsMC4yOSwwLjcxQzI1Ljk3OSwzNS44OSwyNi4yMjksMzYsMjYuNSwzNnoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" /></button>
+        <button class="btn btn-primary" type="submit"  [disabled]="!f.valid" ><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ5IDQ5IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0OSA0OTsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIzMnB4IiBoZWlnaHQ9IjMycHgiPgo8Zz4KCTxyZWN0IHg9IjI3LjUiIHk9IjUiIHdpZHRoPSI2IiBoZWlnaHQ9IjEwIiBmaWxsPSIjMDAwMDAwIi8+Cgk8cGF0aCBkPSJNMzkuOTE0LDBIMC41djQ5aDQ4VjguNTg2TDM5LjkxNCwweiBNMTAuNSwyaDI2djE2aC0yNlYyeiBNMzkuNSw0N2gtMzFWMjZoMzFWNDd6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8cGF0aCBkPSJNMTMuNSwzMmg3YzAuNTUzLDAsMS0wLjQ0NywxLTFzLTAuNDQ3LTEtMS0xaC03Yy0wLjU1MywwLTEsMC40NDctMSwxUzEyLjk0NywzMiwxMy41LDMyeiIgZmlsbD0iIzAwMDAwMCIvPgoJPHBhdGggZD0iTTEzLjUsMzZoMTBjMC41NTMsMCwxLTAuNDQ3LDEtMXMtMC40NDctMS0xLTFoLTEwYy0wLjU1MywwLTEsMC40NDctMSwxUzEyLjk0NywzNiwxMy41LDM2eiIgZmlsbD0iIzAwMDAwMCIvPgoJPHBhdGggZD0iTTI2LjUsMzZjMC4yNywwLDAuNTItMC4xMSwwLjcxLTAuMjljMC4xOC0wLjE5LDAuMjktMC40NSwwLjI5LTAuNzFzLTAuMTEtMC41MjEtMC4yOS0wLjcxYy0wLjM3LTAuMzctMS4wNC0wLjM3LTEuNDEsMCAgIGMtMC4xOSwwLjE4OS0wLjMsMC40MzktMC4zLDAuNzFjMCwwLjI3LDAuMTA5LDAuNTIsMC4yOSwwLjcxQzI1Ljk3OSwzNS44OSwyNi4yMjksMzYsMjYuNSwzNnoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" /></button>
     </form>
     <hr>
     <h4>Maak hier een kaart aan:</h4>

@@ -63,7 +63,7 @@ router.patch('/:id', function(req, res, next){
                 });
             }
             res.status(201).json({
-                title:'Updated identifier',
+                title:'Kaart geupdatet',
                 obj: result
             });
         });
@@ -108,7 +108,7 @@ router.post('/:id', function (req, res, next) {
                 }
             });
             res.status(201).json({
-                message: 'Saved identifier',
+                message: 'Kaart opgeslagen',
                 obj: result
             });
         });
@@ -139,7 +139,7 @@ router.delete('/:id', function (req,res,next) {
                 });
             }
             res.status(201).json({
-                title:'Deleted identifier',
+                title:'Kaart succesvol verwijderd',
                 obj: result
             });
         });

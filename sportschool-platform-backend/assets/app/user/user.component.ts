@@ -43,7 +43,7 @@ export class UserComponent{
         if (myConfirm === false) return;
         this.userService.deleteUser(this.user)
             .subscribe(
-                result => console.log(result)
+                result => alert(result.title)
             );
     }
     onAddIdentifier(user: User){

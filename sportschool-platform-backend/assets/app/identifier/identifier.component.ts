@@ -22,7 +22,7 @@ export class IdentifierComponent {
         if (myConfirm === false) return;
         this.identifierService.deleteIdentifier(this.identifier)
             .subscribe(
-                result => console.log(result)
+                result => alert(result.title)
             );
     }
 }

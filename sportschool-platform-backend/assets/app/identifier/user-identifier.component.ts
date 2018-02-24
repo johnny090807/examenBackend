@@ -24,15 +24,15 @@ export class UserIdentifierComponent implements OnInit{
             this.identifier.nfcId = form.value.nfcId;
             this.identifierService.patchIdentifier(this.identifier)
                 .subscribe(
-                    result => console.log(result)
+                    result => alert(result.title)
                 );
             this.identifier = null;
         }else{
             const identifier = new Identifier(form.value.nfcId,this.userId);
             this.identifierService.addUserIdentifier(identifier)
                 .subscribe(
-                    data => console.log(data),
-                    error => console.error(error)
+                    data => alert("Kaart " + data.obj.nfcId + " toegevoegd."),
+                    error => alert(error.title)
                 );
             form.resetForm();
         }
