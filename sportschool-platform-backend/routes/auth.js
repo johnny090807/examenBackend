@@ -81,6 +81,27 @@ router.get('/:id', function(req,res,next){
     })
 });
 
+router.get('/', function(req,res,next){
+    Auth.find(function(err, result){
+        if (!result){
+            return res.status(500).json({
+                title: 'Geen gebruiker gevonden',
+                error: {message: "Gebruiker niet gevonden"}
+            })
+        }
+        if(err){
+            return res.status(500).json({
+                title: 'Er is iets mis gegaan',
+                error: {message: "Er is iets mis gegaan"}
+            })
+        }
+        res.status(200).json({
+            title: "succes",
+            obj: result
+        })
+    })
+});
+
 router.post('/', function(req, res, next){
     var user = new Auth({
         userName: req.body.userName,
