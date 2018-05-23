@@ -58,6 +58,21 @@ router.post('/signin', function (req, res, next){
 //         next();
 //     });
 // });
+router.get('/getAuths', function(req,res,next) {
+    Auth.find()
+        .exec(function (err, auth) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(201).json({
+                title: 'Success',
+                obj: auth
+            });
+        });
+});
 
 router.get('/:id', function(req,res,next){
     var authId = req.params.id;
@@ -80,21 +95,8 @@ router.get('/:id', function(req,res,next){
         })
     })
 });
-router.get('/getAuths', function(req,res,next) {
-    Auth.find()
-        .exec(function (err, auth) {
-            if (err) {
-                return res.status(500).json({
-                    title: 'An error occurred',
-                    error: err
-                });
-            }
-            res.status(201).json({
-                title: 'Success',
-                obj: auth
-            });
-        });
-});
+
+
 router.post('/', function(req, res, next){
     var user = new Auth({
         userName: req.body.userName,
